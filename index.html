@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Die menschliche Niere &amp; die Herz-Nieren-Achse</title>
+<style>
+:root{
+  --ink:#1c2733; --muted:#5b6b7a; --bg:#f6f8fb; --card:#ffffff; --line:#dde4ec;
+  --kid:#b23a48; --kid2:#7d1f2d; --heart:#d1495b; --blue:#2a6f97; --teal:#2a9d8f; --gold:#e9a23b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-size:16px}
+a{color:var(--blue)}
+header.hero{background:linear-gradient(135deg,#7d1f2d 0%,#b23a48 55%,#d1495b 100%);color:#fff;padding:56px 24px 48px}
+.wrap{max-width:1080px;margin:0 auto}
+.hero h1{margin:0 0 10px;font-size:2.3rem;line-height:1.15}
+.hero p{margin:0;max-width:760px;font-size:1.05rem;opacity:.95}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.18);border-radius:20px;padding:3px 12px;font-size:.8rem;margin:0 6px 14px 0}
+nav.toc{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.04)}
+nav.toc .wrap{display:flex;flex-wrap:wrap;padding:6px 16px}
+nav.toc a{padding:8px 12px;text-decoration:none;color:var(--ink);font-size:.88rem;border-radius:6px}
+nav.toc a:hover,nav.toc a.active{background:#f3e3e5;color:var(--kid2)}
+main{padding:10px 20px 60px}
+section{margin-top:44px}
+h2{font-size:1.65rem;margin:0 0 6px;color:var(--kid2);border-left:6px solid var(--kid);padding-left:12px}
+h3{font-size:1.15rem;margin:22px 0 6px;color:var(--ink)}
+.lead{color:var(--muted);margin:0 0 16px}
+.grid{display:flex;flex-wrap:wrap;margin:0 -7px}
+.grid>.card{flex:1 1 300px;margin:7px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(20,40,60,.05)}
+.card h3{margin-top:0}
+.stat{flex:1 1 150px;margin:7px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--kid);border-radius:10px;padding:12px 14px;text-align:center}
+.stat b{display:block;font-size:1.7rem;color:var(--kid2)}
+.stat span{font-size:.82rem;color:var(--muted)}
+.callout{border-left:5px solid var(--gold);background:#fff8ea;border-radius:8px;padding:12px 16px;margin:16px 0}
+.callout.blue{border-color:var(--blue);background:#eef6fb}
+.callout.red{border-color:var(--kid);background:#fbeef0}
+.callout.green{border-color:var(--teal);background:#eaf7f5}
+.callout strong:first-child{display:block;margin-bottom:2px}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.92rem;margin:10px 0}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:#f1f4f8;font-weight:600}
+tr.hl td{background:#fdecef}
+.cls{display:inline-block;background:#e6eef5;color:#1d4e6b;border-radius:4px;padding:0 6px;font-size:.78rem;font-weight:600;white-space:nowrap}
+.src{font-size:.78rem;color:var(--muted)}
+.src a{color:var(--muted)}
+ul{padding-left:20px;margin:6px 0}
+li{margin:3px 0}
+.fig{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:14px 0;text-align:center}
+.fig svg{max-width:100%;height:auto}
+.fig figcaption,.figcap{font-size:.82rem;color:var(--muted);margin-top:4px}
+.nephron-seg{cursor:pointer;transition:opacity .15s}
+.nephron-seg:hover{opacity:.7}
+.nephron-seg.on{filter:drop-shadow(0 0 4px #ffb703)}
+tr.seg-row.on td{background:#fff3d6}
+.heat td,.heat th{text-align:center;font-size:.85rem}
+.h0{background:#bfe6c3}.h1{background:#fff2a8}.h2{background:#ffc47a}.h3{background:#f08a8a}
+.legend span{display:inline-block;padding:2px 10px;margin:2px 4px 2px 0;border-radius:4px;font-size:.8rem}
+.pill{display:inline-block;border-radius:12px;padding:1px 9px;font-size:.78rem;font-weight:600;color:#fff;background:var(--kid)}
+.pill.t{background:var(--teal)}.pill.b{background:var(--blue)}.pill.g{background:var(--gold);color:#3b2a00}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch}
+.flow .step{flex:1 1 150px;margin:6px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.9rem}
+.flow .step b{display:block;color:var(--kid2)}
+footer{background:#1c2733;color:#cbd5e0;padding:30px 20px;font-size:.85rem}
+footer a{color:#9ec9e8}
+.refs li{margin:4px 0}
+.noprint-note{display:none}
+
+/* ===== Druck / PDF ===== */
+@page{size:A4;margin:16mm 14mm 16mm 14mm;@bottom-center{content:"Die menschliche Niere & die Herz-Nieren-Achse  |  Seite " counter(page) " von " counter(pages);font-size:8pt;color:#667}}
+@media print{
+  body{background:#fff;font-size:10pt;line-height:1.42}
+  nav.toc{display:none}
+  header.hero{padding:22px 18px;border-radius:0}
+  .hero h1{font-size:22pt}
+  main{padding:0}
+  section{margin-top:20px}
+  h2{font-size:15pt;break-after:avoid}
+  h3{font-size:11.5pt;break-after:avoid}
+  .card,.stat,.callout,.fig,tr,.step{break-inside:avoid}
+  .lead{break-after:avoid}
+  thead{display:table-header-group}
+  .card{box-shadow:none}
+  .grid:not(.stats){display:block;margin:0}
+  .grid:not(.stats)>.card{display:block;width:auto;margin:8px 0}
+  .fig svg{max-height:105mm;width:auto;max-width:100%}
+  .screen-only{display:none}
+  .stat{flex:1 1 120px}
+  .stat b{font-size:15pt}
+  a{color:#1d4e6b;text-decoration:none}
+  .noprint-note{display:block}
+  .hide-print{display:none}
+}
+@media (max-width:640px){.hero h1{font-size:1.7rem}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">Physiologie</span><span class="tag">Pathologie</span><span class="tag">Kardiorenale Achse</span><span class="tag">ESC/ERA 2026</span>
+    <h1>Die menschliche Niere &amp; die Herz-Nieren-Achse</h1>
+    <p>Wie die Niere filtert, reguliert und Hormone bildet &ndash; welche Erkrankungen sie treffen &ndash; und warum Herz und Niere sich gegenseitig beeinflussen. Mit Daten aus den ESC-Leitlinien in Ihrem Laufwerk (u.&thinsp;a. <em>2026 ESC Guidelines for the management of cardiovascular disease and chronic kidney disease, in collaboration with the ERA</em>).</p>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#grundlagen">Grundlagen</a>
+  <a href="#nephron">Nephron</a>
+  <a href="#funktionen">Funktionen</a>
+  <a href="#regulation">Regulation</a>
+  <a href="#diagnostik">Diagnostik</a>
+  <a href="#pathologien">Pathologien</a>
+  <a href="#achse">Herz-Nieren-Achse</a>
+  <a href="#therapie">Therapie (ESC 2026)</a>
+  <a href="#praxis">Praxis</a>
+  <a href="#quellen">Quellen</a>
+</div></nav>
+
+<main><div class="wrap">
+
+<!-- ================= GRUNDLAGEN ================= -->
+<section id="grundlagen">
+  <h2>1 &middot; Grundlagen &ndash; die Niere in Zahlen</h2>
+  <p class="lead">Zwei bohnenförmige Organe, die täglich rund ein Fünftel des Herzzeitvolumens filtern.</p>
+  <div class="grid stats">
+    <div class="stat"><b>2</b><span>Nieren, je ca. 10&ndash;12&nbsp;cm lang, ca. 120&ndash;170&nbsp;g</span></div>
+    <div class="stat"><b>~1 Mio.</b><span>Nephrone pro Niere</span></div>
+    <div class="stat"><b>~20&ndash;25&nbsp;%</b><span>des Herzzeitvolumens fließen durch die Nieren</span></div>
+    <div class="stat"><b>~180&nbsp;L</b><span>Primärharn pro Tag &rarr; nur 1&ndash;2&nbsp;L Endurin</span></div>
+    <div class="stat"><b>~100 Mio.</b><span>Menschen in Europa mit CKD <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=11">[ESC/ERA, S.&nbsp;11]</a></span></div>
+  </div>
+  <p class="src">Physiologische Richtwerte (Nephronzahl, Perfusion, Primärharn) sind Standard-Lehrbuchwissen und stammen nicht aus den ESC-Dokumenten; die CKD-Prävalenz stammt aus der ESC/ERA-Leitlinie 2026.</p>
+
+  <h3>Aufbau</h3>
+  <ul>
+    <li><b>Lage:</b> retroperitoneal beiderseits der Wirbelsäule (etwa Th12&ndash;L3); die rechte Niere liegt meist etwas tiefer.</li>
+    <li><b>Nierenrinde (Cortex):</b> enthält die Nierenkörperchen (Glomerulus + Bowman-Kapsel) und die gewundenen Tubulusanteile.</li>
+    <li><b>Nierenmark (Medulla):</b> Markpyramiden mit Henle-Schleifen und Sammelrohren; Spitze = Papille.</li>
+    <li><b>Ableitende Wege:</b> Nierenkelche &rarr; Nierenbecken &rarr; Harnleiter &rarr; Harnblase &rarr; Harnröhre.</li>
+    <li><b>Gefäße:</b> A. renalis &rarr; Aa. interlobares/arcuatae &rarr; Aa. interlobulares &rarr; <i>Vas afferens</i> &rarr; Glomerulus &rarr; <i>Vas efferens</i> &rarr; peritubuläres Kapillarnetz/Vasa recta &rarr; V. renalis.</li>
+  </ul>
+</section>
+
+<!-- ================= NEPHRON ================= -->
+<section id="nephron">
+  <h2>2 &middot; Das Nephron &ndash; die Funktionseinheit</h2>
+  <p class="lead"><span class="screen-only">Klicken Sie auf einen Abschnitt im Schema, um ihn in der Tabelle darunter hervorzuheben. </span>Die Nummern 1&ndash;6 im Schema entsprechen den Zeilen der Tabelle.</p>
+
+  <figure class="fig">
+  <svg viewBox="0 0 660 440" role="img" aria-label="Schema eines Nephrons mit Glomerulus, proximalem Tubulus, Henle-Schleife, distalem Tubulus und Sammelrohr">
+    <rect x="0" y="0" width="660" height="440" fill="#fff"/>
+    <!-- Rinde / Mark -->
+    <rect x="10" y="10" width="640" height="205" rx="14" fill="#fbe9e7"/>
+    <rect x="10" y="215" width="640" height="215" rx="14" fill="#f3d3cf"/>
+    <text x="24" y="32" font-size="13" fill="#8a4b45" font-weight="700">RINDE (Cortex)</text>
+    <text x="24" y="236" font-size="13" fill="#7a3a34" font-weight="700">MARK (Medulla)</text>
+    <!-- Sammelrohr -->
+    <path id="s-cd" class="nephron-seg" data-seg="cd" d="M450 70 L450 400" stroke="#2a6f97" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <!-- Glomerulus -->
+    <g id="s-glo" class="nephron-seg" data-seg="glo">
+      <circle cx="140" cy="100" r="46" fill="#f9d2d6" stroke="#b23a48" stroke-width="3"/>
+      <circle cx="140" cy="100" r="28" fill="#d1495b"/>
+      <path d="M120 90 q20 -18 40 0 M120 105 q20 18 40 0 M125 100 q15 -10 30 0" stroke="#fff" stroke-width="2" fill="none"/>
+    </g>
+    <!-- Arteriolen -->
+    <path d="M30 80 L98 90" stroke="#d1495b" stroke-width="7" stroke-linecap="round"/>
+    <path d="M30 130 L98 112" stroke="#8d99ae" stroke-width="5" stroke-linecap="round"/>
+    <text x="14" y="68" font-size="11" fill="#7d1f2d">Vas afferens</text>
+    <text x="14" y="150" font-size="11" fill="#3d4a5c">Vas efferens</text>
+    <!-- proximaler Tubulus -->
+    <path id="s-pct" class="nephron-seg" data-seg="pct" d="M165 138 C185 150 235 140 235 160 C235 180 185 175 190 190 C195 205 235 195 235 215" stroke="#e9a23b" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <!-- absteigender Schenkel -->
+    <path id="s-dl" class="nephron-seg" data-seg="dl" d="M235 215 L235 372 Q235 405 275 405" stroke="#2a9d8f" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- aufsteigender Schenkel -->
+    <path id="s-al" class="nephron-seg" data-seg="al" d="M275 405 Q315 405 315 372 L315 190" stroke="#1f6f66" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <!-- distaler Tubulus -->
+    <path id="s-dct" class="nephron-seg" data-seg="dct" d="M315 190 C315 150 350 165 355 135 C360 108 400 112 450 112" stroke="#7b5ea7" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <!-- JGA -->
+    <ellipse cx="205" cy="105" rx="18" ry="12" fill="none" stroke="#333" stroke-dasharray="3 3"/>
+    <text x="190" y="64" font-size="10" fill="#333">juxtaglomerul&auml;rer</text><text x="190" y="76" font-size="10" fill="#333">Apparat</text>
+    <path d="M205 80 L205 93" stroke="#333" stroke-width="1" stroke-dasharray="2 2"/>
+    <!-- Beschriftungen -->
+    <g font-size="12" font-weight="700">
+      <text x="30" y="178" fill="#7d1f2d">1 Glomerulus</text>
+      <text x="176" y="198" fill="#9a6a10" text-anchor="end">2 proximaler</text><text x="176" y="212" fill="#9a6a10" text-anchor="end">Tubulus</text>
+      <text x="222" y="320" fill="#1f7a70" text-anchor="end">3 absteigend</text>
+      <text x="327" y="300" font-size="11" fill="#1f6f66">4 aufsteigend</text>
+      <text x="327" y="314" font-size="11" fill="#1f6f66">(dicker Schenkel)</text>
+      <text x="300" y="86" fill="#5a3f85">5 distaler Tubulus</text>
+      <text x="468" y="250" fill="#2a6f97">6 Sammelrohr</text>
+    </g>
+    <text x="468" y="268" font-size="11" fill="#2a6f97">&rarr; Papille</text>
+    <text x="468" y="282" font-size="11" fill="#2a6f97">&rarr; Nierenbecken</text>
+    <text x="255" y="428" font-size="11" fill="#7a3a34">Henle-Schleife</text>
+    <!-- Osmolarit&auml;t -->
+    <defs><linearGradient id="osm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#7d1f2d" stop-opacity=".45"/></linearGradient></defs>
+    <rect x="612" y="235" width="26" height="170" fill="url(#osm)" rx="6"/>
+    <text x="625" y="228" font-size="10" text-anchor="middle" fill="#7d1f2d">300</text>
+    <text x="625" y="420" font-size="10" text-anchor="middle" fill="#7d1f2d">~1200</text>
+    <text x="600" y="320" font-size="10" text-anchor="middle" fill="#7d1f2d" transform="rotate(-90 600 320)">Osmolarit&auml;t im Mark (mosm/L)</text>
+  </svg>
+  <figcaption>Schematische Darstellung (vereinfacht, nicht maßstabsgetreu). Eigene Illustration.</figcaption>
+  </figure>
+
+  <table id="segtable">
+    <thead><tr><th style="width:18%">Abschnitt</th><th>Was passiert?</th><th style="width:26%">Klinisch / pharmakologisch relevant</th></tr></thead>
+    <tbody>
+      <tr class="seg-row" data-seg="glo"><td><b>1 Glomerulus</b></td><td>Ultrafiltration des Blutplasmas durch die dreischichtige Filterbarriere (fenestriertes Endothel &ndash; Basalmembran &ndash; Podozyten-Schlitzmembran). Treibende Kraft: Blutdruck im Kapillarknäuel. Normale GFR beim jungen Erwachsenen ca. 100&ndash;125&nbsp;ml/min/1,73&nbsp;m².</td><td>Schädigung &rarr; <b>Albuminurie/Proteinurie</b>, Hämaturie (Glomerulonephritis, diabetische Nephropathie).</td></tr>
+      <tr class="seg-row" data-seg="pct"><td><b>2 Proximaler Tubulus</b></td><td>Rückresorption von ca. 65&nbsp;% des filtrierten Na<sup>+</sup>/Wassers, praktisch aller Glukose und Aminosäuren, von HCO<sub>3</sub><sup>&minus;</sup>, Phosphat; Sekretion organischer Anionen/Kationen (viele Medikamente).</td><td><b>SGLT2-Hemmer</b> (Gliflozine) blockieren die Glukose-/Na<sup>+</sup>-Rückresorption. Medikamententoxizität (z.&thinsp;B. NSAR, Aminoglykoside).</td></tr>
+      <tr class="seg-row" data-seg="dl"><td><b>3 Absteigender Schenkel</b></td><td>Wasserdurchlässig (Aquaporin-1): Wasser strömt ins hyperosmolare Mark &rarr; Tubulusflüssigkeit wird aufkonzentriert.</td><td>Basis des Gegenstromprinzips (Konzentrierungsfähigkeit des Urins).</td></tr>
+      <tr class="seg-row" data-seg="al"><td><b>4 Aufsteigender (dicker) Schenkel</b></td><td>Wasserundurchlässig, aktive Rückresorption von Na<sup>+</sup>/K<sup>+</sup>/2Cl<sup>&minus;</sup> (NKCC2) &rarr; baut den osmotischen Gradienten im Mark auf. Am Ende liegt die <i>Macula densa</i> (Sensor für NaCl-Angebot).</td><td><b>Schleifendiuretika</b> (Furosemid, Torasemid) wirken hier &ndash; zentral bei Volumenüberlast / Herzinsuffizienz.</td></tr>
+      <tr class="seg-row" data-seg="dct"><td><b>5 Distaler Tubulus</b></td><td>Feinregulation von Na<sup>+</sup> (NCC-Kotransporter), Ca<sup>2+</sup>-Rückresorption (PTH-gesteuert), Mg<sup>2+</sup>.</td><td><b>Thiazide</b> hemmen NCC. Ergänzung zu Schleifendiuretika bei Diuretikaresistenz.</td></tr>
+      <tr class="seg-row" data-seg="cd"><td><b>6 Verbindungstubulus &amp; Sammelrohr</b></td><td>Aldosteron: Na<sup>+</sup>-Rückresorption (ENaC) und K<sup>+</sup>-/H<sup>+</sup>-Sekretion. ADH (Vasopressin): Einbau von Aquaporin-2 &rarr; Wasserrückresorption &rarr; konzentrierter Urin.</td><td><b>MRA</b> (Spironolacton, Eplerenon, <b>Finerenon</b>) blockieren den Mineralokortikoid-Rezeptor &rarr; Risiko <b>Hyperkaliämie</b>.</td></tr>
+    </tbody>
+  </table>
+  <p class="src">Tabelle: Lehrbuchphysiologie; Wirkorte der Medikamente stimmen mit den in den ESC-Leitlinien empfohlenen Substanzklassen überein (SGLT2i, Schleifendiuretika, MRA).</p>
+</section>
+
+<!-- ================= FUNKTIONEN ================= -->
+<section id="funktionen">
+  <h2>3 &middot; Was die Niere alles leistet</h2>
+  <p class="lead">Weit mehr als &laquo;Urin machen&raquo;: sechs Aufgabenfelder.</p>
+  <div class="grid">
+    <div class="card"><h3>1. Ausscheidung &amp; Entgiftung</h3><p>Harnstoff, Kreatinin, Harnsäure, Medikamentenmetabolite und Toxine werden filtriert bzw. sezerniert. Fällt die Funktion aus, reichern sich <b>Urämietoxine</b> an.</p></div>
+    <div class="card"><h3>2. Wasser- &amp; Elektrolythaushalt</h3><p>Steuerung von Natrium, Kalium, Calcium, Phosphat, Magnesium und damit des Extrazellulärvolumens. Die Niere kann Urin von ca. 50 bis ca. 1200&nbsp;mosm/L bilden.</p></div>
+    <div class="card"><h3>3. Säure-Basen-Haushalt</h3><p>Rückgewinnung von Bikarbonat, Ausscheidung von H<sup>+</sup> (als NH<sub>4</sub><sup>+</sup> und titrierbare Säure). Bei CKD droht eine <b>metabolische Azidose</b>.</p></div>
+    <div class="card"><h3>4. Blutdruckregulation</h3><p>Über Volumen/Salzbilanz und das <b>Renin-Angiotensin-Aldosteron-System (RAAS)</b>: Renin aus den juxtaglomerulären Zellen.</p></div>
+    <div class="card"><h3>5. Hormonbildung</h3><p><b>Erythropoetin</b> (Blutbildung), <b>Calcitriol</b> (aktives Vitamin&nbsp;D &rarr; Knochen/Calcium), <b>Renin</b>, Prostaglandine.</p></div>
+    <div class="card"><h3>6. Stoffwechsel</h3><p>Glukoneogenese in Hungerphasen, Abbau kleiner Peptide/Hormone (z.&thinsp;B. Insulin), Vitamin-D-Aktivierung (1&alpha;-Hydroxylase).</p></div>
+  </div>
+</section>
+
+<!-- ================= REGULATION ================= -->
+<section id="regulation">
+  <h2>4 &middot; Wie die Niere sich selbst und den Körper steuert</h2>
+  <h3>Autoregulation der GFR</h3>
+  <p>Zwischen einem mittleren arteriellen Druck von grob 80 und 180&nbsp;mmHg hält die Niere Durchblutung und GFR weitgehend konstant &ndash; durch die <b>myogene Reaktion</b> des Vas afferens und das <b>tubuloglomeruläre Feedback</b> (Macula densa meldet das NaCl-Angebot). Unterhalb dieses Bereichs &ndash; z.&thinsp;B. bei niedrigem Herzzeitvolumen &ndash; sinkt die GFR rasch: die Brücke zur Herz-Nieren-Achse.</p>
+  <h3>Das RAAS &ndash; Kern des Zusammenspiels</h3>
+  <div class="flow">
+    <div class="step"><b>Auslöser</b>Blutdruck&thinsp;&darr;, Perfusion&thinsp;&darr;, weniger NaCl an der Macula densa, Sympathikus&thinsp;&uarr;</div>
+    <div class="step"><b>Renin</b>wird aus dem juxtaglomerulären Apparat freigesetzt</div>
+    <div class="step"><b>Angiotensin&nbsp;II</b>Vasokonstriktion (v.&thinsp;a. Vas efferens), Na<sup>+</sup>-Retention, Durst, Aldosteron-Freisetzung</div>
+    <div class="step"><b>Aldosteron</b>Na<sup>+</sup>/Wasser-Retention, K<sup>+</sup>-Verlust im Sammelrohr</div>
+    <div class="step"><b>Folge</b>Volumen&thinsp;&uarr;, Blutdruck&thinsp;&uarr; &ndash; kurzfristig hilfreich, chronisch schädlich für Herz <i>und</i> Niere</div>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Weitere Systeme</h3>
+      <ul>
+        <li><b>ADH (Vasopressin):</b> Wasserrückresorption im Sammelrohr (Aquaporin-2).</li>
+        <li><b>Natriuretische Peptide (ANP/BNP):</b> aus dem Herzen bei Dehnung &rarr; fördern Natriurese; sie sind Brücke zwischen Herz und Niere. Eine eingeschränkte Nierenfunktion kann NT-proBNP erhöhen <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=22">[ESC HF 2026, S.&nbsp;22]</a>.</li>
+        <li><b>Sympathikus:</b> reduziert renale Durchblutung, stimuliert Renin.</li>
+        <li><b>PTH / FGF23 / Calcitriol:</b> Calcium-Phosphat-Haushalt.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>Beispiel: Warum die eGFR unter Therapie kurz fällt</h3>
+      <p>RAS-Blocker und SGLT2-Hemmer senken den Druck im Glomerulus (Vas efferens weitet bzw. Vas afferens konstringiert). Ein <b>kleiner initialer eGFR-Abfall</b> ist daher erwartbar und kein Grund zum Absetzen &ndash; langfristig verbessert sich die Nierenprognose <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=32">[ESC HF 2026, S.&nbsp;32]</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIAGNOSTIK ================= -->
+<section id="diagnostik">
+  <h2>5 &middot; Diagnostik: eGFR, Albuminurie und KDIGO-Stadien</h2>
+  <p class="lead">Nach ESC/ERA 2026 liegt eine CKD vor, wenn Veränderungen von Nierenstruktur oder -funktion <b>mindestens 3&nbsp;Monate</b> bestehen und gesundheitliche Folgen haben &ndash; in der Praxis meist eGFR&nbsp;&lt;&nbsp;60 ml/min/1,73&nbsp;m² oder UACR&nbsp;&ge;&nbsp;30&nbsp;mg/g (&ge;&nbsp;3&nbsp;mg/mmol) <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=14">[S.&nbsp;14]</a>.</p>
+  <div class="grid">
+    <div class="card"><h3>eGFR (Blut)</h3>
+      <ul>
+        <li>Validierte kreatininbasierte Gleichung empfohlen <span class="cls">I, A</span>. Die Leitlinie nennt die CKD-EPI-Gleichung von 2009 ohne Race-Koeffizient als geeigneten Kompromiss für Europa.</li>
+        <li><b>Cystatin&nbsp;C</b> erwägen bei unsicherer Kreatinin-eGFR (sehr viel/wenig Muskelmasse, Medikamente) <span class="cls">IIa, A</span>.</li>
+      </ul>
+      <p class="src"><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=14">ESC/ERA 2026, S.&nbsp;14</a></p></div>
+    <div class="card"><h3>UACR (Urin)</h3>
+      <ul>
+        <li>Albumin-Kreatinin-Quotient aus <b>morgendlichem Spontanurin</b> <span class="cls">I, A</span>.</li>
+        <li>Albuminurie kann dem eGFR-Abfall vorausgehen; Teststreifen sind bei niedrigen Konzentrationen unempfindlich.</li>
+        <li><b>Screening:</b> eGFR und Albuminurie bei <i>allen</i> Menschen mit Herz-Kreislauf-Erkrankung (Hypertonie, KHK, HF, pAVK, Schlaganfall) <span class="cls">I, C</span>.</li>
+      </ul>
+      <p class="src"><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=14">S.&nbsp;14</a>, <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=16">S.&nbsp;16&ndash;18</a></p></div>
+    <div class="card"><h3>KFRE &amp; Kontrollen</h3>
+      <ul>
+        <li>Ab G3&ndash;G5: <b>KFRE</b> (Kidney Failure Risk Equation) zur Abschätzung des Nierenversagensrisikos und zur rechtzeitigen Überweisung <span class="cls">I, A</span> <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=19">[S.&nbsp;19]</a>.</li>
+        <li>Mindestens jährlich eGFR bei Diabetes/hohem Progressionsrisiko, jährlich Albuminurie bei Diabetes, Hypertonie, niedriger eGFR oder Hämaturie.</li>
+      </ul></div>
+  </div>
+
+  <h3>KDIGO-Risikomatrix (Heatmap)</h3>
+  <table class="heat">
+    <thead><tr><th rowspan="2">GFR-Stadium<br>(ml/min/1,73&nbsp;m²)</th><th>A1</th><th>A2</th><th>A3</th></tr>
+    <tr><th>UACR &lt;30&nbsp;mg/g<br>(&lt;3&nbsp;mg/mmol)</th><th>30&ndash;300&nbsp;mg/g<br>(3&ndash;30&nbsp;mg/mmol)</th><th>&gt;300&nbsp;mg/g<br>(&gt;30&nbsp;mg/mmol)</th></tr></thead>
+    <tbody>
+      <tr><th>G1 &ge;90 &ndash; normal/hoch</th><td class="h0" title="niedriges Risiko">niedrig*</td><td class="h1" title="mäßig erhöhtes Risiko">mäßig</td><td class="h2" title="hohes Risiko">hoch</td></tr>
+      <tr><th>G2 60&ndash;89 &ndash; leicht vermindert</th><td class="h0">niedrig*</td><td class="h1">mäßig</td><td class="h2">hoch</td></tr>
+      <tr><th>G3a 45&ndash;59</th><td class="h1">mäßig</td><td class="h2">hoch</td><td class="h3">sehr hoch</td></tr>
+      <tr><th>G3b 30&ndash;44</th><td class="h2">hoch</td><td class="h3">sehr hoch</td><td class="h3">sehr hoch</td></tr>
+      <tr><th>G4 15&ndash;29 &ndash; schwer vermindert</th><td class="h3">sehr hoch</td><td class="h3">sehr hoch</td><td class="h3">sehr hoch</td></tr>
+      <tr><th>G5 &lt;15 &ndash; Nierenversagen</th><td class="h3">sehr hoch</td><td class="h3">sehr hoch</td><td class="h3">sehr hoch</td></tr>
+    </tbody>
+  </table>
+  <p class="src">* G1/G2 mit A1 gilt nur dann als CKD, wenn ein anderer Marker der Nierenschädigung vorliegt. Quelle: <a href="https://myaidrive.com/wZd2EQa63a6YdnjZWEtAo2NrHdsBjwdj?pdfPage=4">ESC-Patientenversion CKD, S.&nbsp;4</a>; Stadiendefinition: <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=14">ESC/ERA 2026, S.&nbsp;14&ndash;16</a>. Die Leitlinie ordnet die Risikostufen moderat/hoch/sehr hoch etwa dem 3&ndash;20-, 20&ndash;70- bzw. &gt;70-Fachen des relativen Risikos für Nierenversagen zu <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=19">[S.&nbsp;19]</a>.</p>
+  <div class="legend"><span class="h0">niedrig</span><span class="h1">mäßig erhöht</span><span class="h2">hoch</span><span class="h3">sehr hoch</span></div>
+</section>
+
+<!-- ================= PATHOLOGIEN ================= -->
+<section id="pathologien">
+  <h2>6 &middot; Pathologien &ndash; wenn die Niere erkrankt</h2>
+  <div class="callout blue"><strong>Hinweis zur Quellenlage</strong>Die ESC-Dokumente behandeln v.&thinsp;a. CKD und Herz-Kreislauf-Erkrankungen. Die folgende Übersicht der Nierenerkrankungen (AKI, Glomerulopathien, Zystennieren, Steine usw.) basiert auf allgemeinem medizinischem Lehrbuchwissen; Aussagen mit Seitenangabe stammen aus den ESC-Leitlinien.</div>
+
+  <h3>A &ndash; Nach Ort der Schädigung</h3>
+  <table>
+    <thead><tr><th style="width:20%">Erkrankung</th><th>Kern</th><th style="width:34%">Typische Zeichen / Bedeutung</th></tr></thead>
+    <tbody>
+      <tr><td><b>Akutes Nierenversagen (AKI)</b></td><td>Rascher Funktionsverlust (Stunden&ndash;Tage; KDIGO: Kreatinin &uarr; &ge;0,3&nbsp;mg/dl in 48&nbsp;h oder &ge;1,5-fach in 7&nbsp;Tagen bzw. Urinmenge &lt;0,5&nbsp;ml/kg/h über 6&nbsp;h).<br><b>Prärenal</b> (Hypovolämie, Low-Output, Sepsis) &middot; <b>intrarenal</b> (akute Tubulusnekrose, interstitielle Nephritis, Glomerulonephritis, Kontrastmittel/Nephrotoxine) &middot; <b>postrenal</b> (Harnabflussstörung).</td><td>Oft reversibel; erhöht aber das spätere CKD- und Herz-Risiko. Kontrastmittel: bei eGFR&nbsp;&lt;30 niedrig-/iso-osmolares Kontrastmittel plus kontrastsparende Technik <span class="cls">I, A</span> <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=66">[S.&nbsp;66&ndash;67]</a>.</td></tr>
+      <tr><td><b>Chronische Nierenerkrankung (CKD)</b></td><td>&ge;3&nbsp;Monate bestehende Struktur-/Funktionsstörung; häufigste Ursachen: <b>Diabetes</b>, <b>Hypertonie</b>, Glomerulonephritiden, Zystennieren, tubulointerstitielle Erkrankungen.</td><td>Oft lange symptomlos! Erkennung nur über eGFR und UACR. Hohes kardiovaskuläres Risiko (s.&nbsp;Kap.&nbsp;7).</td></tr>
+      <tr><td><b>Diabetische Nephropathie</b></td><td>Hyperfiltration &rarr; Albuminurie &rarr; GFR-Abfall; mikro- und makrovaskuläre Schädigung.</td><td>Therapie: RAS-Blocker, <b>SGLT2i</b>, <b>Finerenon</b>, <b>Semaglutid</b> (s.&nbsp;Kap.&nbsp;8).</td></tr>
+      <tr><td><b>Hypertensive Nephrosklerose / renovaskuläre Hypertonie</b></td><td>Chronisch hoher Druck schädigt Glomeruli; <b>Nierenarterienstenose</b> (Atherosklerose, bei jungen Frauen fibromuskuläre Dysplasie) aktiviert das RAAS.</td><td>Abklärung per Doppler/CT-A/MR-A; Stent nur bei hämodynamisch signifikanter Stenose und Hochrisiko (<span class="cls">IIb, C</span>), bei FMD Angioplastie ohne Stent <span class="cls">IIa, C</span>; ohne gesicherte Signifikanz nicht empfohlen <span class="cls">III, A</span> <a href="https://myaidrive.com/MT99LANkE5FPSh5xGxe45LLErCx6CMqB?pdfPage=71">[ESC BP 2024, S.&nbsp;71&ndash;72]</a>.</td></tr>
+      <tr><td><b>Nephritisches Syndrom</b></td><td>Glomeruläre Entzündung (z.&thinsp;B. IgA-Nephropathie, postinfektiöse GN, ANCA-Vaskulitis, Lupusnephritis).</td><td>Hämaturie (dysmorphe Erythrozyten), Hypertonie, Ödeme, GFR&thinsp;&darr;.</td></tr>
+      <tr><td><b>Nephrotisches Syndrom</b></td><td>Schaden der Podozyten/Filterbarriere (Minimal-Change, FSGS, membranöse GN, diabetisch).</td><td>Proteinurie &gt;3,5&nbsp;g/Tag, Hypalbuminämie, Ödeme, Hyperlipidämie, Thromboserisiko.</td></tr>
+      <tr><td><b>Polyzystische Nierenerkrankung (ADPKD)</b></td><td>Häufigste erbliche Nierenerkrankung (PKD1/PKD2); Zysten vergrößern die Nieren.</td><td>Hypertonie, Schmerzen, Hämaturie, Hirnarterienaneurysmen, progredient zur Niereninsuffizienz.</td></tr>
+      <tr><td><b>Nephrolithiasis (Nierensteine)</b></td><td>Kristallisation (Calciumoxalat, Harnsäure, Struvit).</td><td>Koliken, Hämaturie, Harnstau &rarr; postrenales AKI.</td></tr>
+      <tr><td><b>Harnwegsinfekt / Pyelonephritis</b></td><td>Aufsteigende bakterielle Infektion bis ins Nierenbecken.</td><td>Fieber, Flankenschmerz; bei Sepsis AKI-Risiko.</td></tr>
+      <tr><td><b>Tumoren</b></td><td>Nierenzellkarzinom (häufigster maligner Nierentumor).</td><td>Oft Zufallsbefund; Hämaturie, Flankenschmerz.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>B &ndash; Komplikationen fortgeschrittener CKD</h3>
+  <div class="grid">
+    <div class="card"><h3>Renale Anämie</h3><p>Weniger Erythropoetin &rarr; Anämie, Eisenmangel; verschlechtert Herzinsuffizienz. Bei Hämodialyse: proaktive hochdosierte i.&thinsp;v.-Eisengabe <span class="cls">I, B1</span> (außer Ferritin &gt;700&nbsp;µg/L oder TSAT&nbsp;&ge;40&nbsp;%) <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=67">[S.&nbsp;67&ndash;69]</a>. Volle Anämiekorrektur mit ESA wegen Schlaganfallrisiko <b>nicht</b> empfohlen <span class="cls">III, A</span> <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=55">[S.&nbsp;55&ndash;57]</a>.</p></div>
+    <div class="card"><h3>CKD-MBD</h3><p>Phosphat&thinsp;&uarr;, Calcitriol&thinsp;&darr;, PTH&thinsp;&uarr; &rarr; Knochenumbau, <b>Gefäß- und Klappenverkalkung</b> <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=20">[S.&nbsp;20&ndash;21]</a>. Verkalkte Herzklappen versteifen und funktionieren schlechter <a href="https://myaidrive.com/wZd2EQa63a6YdnjZWEtAo2NrHdsBjwdj?pdfPage=12">[Patientenversion, S.&nbsp;12]</a>.</p></div>
+    <div class="card"><h3>Hyperkaliämie</h3><p>Häufig bei CKD, Diabetes und unter RAS-Blockern/MRA; kann Arrhythmien auslösen. Handlungsschwelle: wiederholt K<sup>+</sup>&nbsp;&gt;5,5&nbsp;mmol/L; schwer, arrhythmogen v.&thinsp;a. &gt;6,5 <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=19">[S.&nbsp;19]</a>.</p></div>
+    <div class="card"><h3>Volumenüberlast &amp; Azidose</h3><p>Salz-/Wasserretention führt zu Ödemen, Hypertonie und Lungenstauung; metabolische Azidose beschleunigt Muskel- und Knochenabbau.</p></div>
+  </div>
+
+  <h3>C &ndash; Nierenersatz</h3>
+  <p>Bei G5 (eGFR &lt;15) kommen <b>Dialyse</b>, <b>Nierentransplantation</b> oder konservative Versorgung in Betracht <a href="https://myaidrive.com/wZd2EQa63a6YdnjZWEtAo2NrHdsBjwdj?pdfPage=4">[Patientenversion, S.&nbsp;4]</a>. Dialysepatienten haben eine etwa 5&ndash;10-fach höhere kardiovaskuläre Mortalität als die Allgemeinbevölkerung <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=67">[ESC/ERA, S.&nbsp;67]</a>; nach erfolgreicher Transplantation ist das kardiovaskuläre Risiko niedriger als bei fortgesetzter Dialyse <a href="https://myaidrive.com/wZd2EQa63a6YdnjZWEtAo2NrHdsBjwdj?pdfPage=12">[Patientenversion, S.&nbsp;12]</a>. Transplantationskandidaten sollen vorab kardiovaskulär untersucht werden (Anamnese, EKG, Echokardiographie <span class="cls">I, C</span>) <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=70">[S.&nbsp;70&ndash;71]</a>.</p>
+</section>
+
+<!-- ================= HERZ-NIEREN-ACHSE ================= -->
+<section id="achse">
+  <h2>7 &middot; Die Herz-Nieren-Achse</h2>
+  <p class="lead">Herz und Niere sind hämodynamisch, hormonell und entzündlich so eng verknüpft, dass die Erkrankung des einen Organs das andere fast zwangsläufig mitbetrifft. Die ESC/ERA-Leitlinie beschreibt die Beziehung als <i>&bdquo;complex bidirectional pathophysiological and clinical interactions&ldquo;</i> <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=34">[S.&nbsp;34]</a>.</p>
+
+  <div class="grid stats">
+    <div class="stat"><b>5&times;</b><span>höhere CKD-Inzidenz bei Herzinsuffizienz <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=66">[HF 2026, S.&nbsp;66]</a></span></div>
+    <div class="stat"><b>30&ndash;40&nbsp;%</b><span>der Menschen mit chron. HF haben CKD (HFpEF bis 50&nbsp;%) <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=66">[S.&nbsp;66]</a></span></div>
+    <div class="stat"><b>30&ndash;50&nbsp;%</b><span>Verschlechterung der Nierenfunktion bei Klinikaufnahme wegen dekompensierter HF <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=66">[S.&nbsp;66]</a></span></div>
+    <div class="stat"><b>bis 45&times;</b><span>Risiko für Nierenersatz in den 3&nbsp;Monaten nach einem HF-Ereignis; 2&ndash;4&times; nach KHK, Schlaganfall, VHF <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=21">[ESC/ERA]</a></span></div>
+    <div class="stat"><b>&gt;80&nbsp;%</b><span>der Menschen mit CKD sind hypertensiv (weltweit ca. 850&nbsp;Mio. mit CKD) <a href="https://myaidrive.com/MT99LANkE5FPSh5xGxe45LLErCx6CMqB?pdfPage=65">[ESC BP 2024, S.&nbsp;65]</a></span></div>
+  </div>
+
+  <figure class="fig">
+  <svg viewBox="0 0 760 470" role="img" aria-label="Wechselwirkungen zwischen Herz und Niere">
+    <defs>
+      <marker id="arR" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b23a48"/></marker>
+      <marker id="arB" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2a6f97"/></marker>
+    </defs>
+    <rect width="760" height="470" fill="#fff"/>
+    <!-- Herz -->
+    <rect x="20" y="150" width="170" height="150" rx="22" fill="#fbe1e4" stroke="#d1495b" stroke-width="3"/>
+    <text x="105" y="190" font-size="20" font-weight="700" text-anchor="middle" fill="#8f2133">HERZ</text>
+    <text x="105" y="215" font-size="12" text-anchor="middle" fill="#6b1d2a">Herzinsuffizienz</text>
+    <text x="105" y="232" font-size="12" text-anchor="middle" fill="#6b1d2a">KHK / Infarkt</text>
+    <text x="105" y="249" font-size="12" text-anchor="middle" fill="#6b1d2a">Vorhofflimmern</text>
+    <text x="105" y="266" font-size="12" text-anchor="middle" fill="#6b1d2a">Hypertonie</text>
+    <!-- Niere -->
+    <rect x="570" y="150" width="170" height="150" rx="60" fill="#e3effa" stroke="#2a6f97" stroke-width="3"/>
+    <text x="655" y="190" font-size="20" font-weight="700" text-anchor="middle" fill="#1d4e6b">NIERE</text>
+    <text x="655" y="215" font-size="12" text-anchor="middle" fill="#163a50">AKI / CKD</text>
+    <text x="655" y="232" font-size="12" text-anchor="middle" fill="#163a50">Albuminurie</text>
+    <text x="655" y="249" font-size="12" text-anchor="middle" fill="#163a50">Dialyse / Transplantat</text>
+    <!-- Pfeil Herz -> Niere -->
+    <path d="M190 185 C300 80 460 80 570 185" fill="none" stroke="#b23a48" stroke-width="4" marker-end="url(#arR)"/>
+    <text x="380" y="40" font-size="14" font-weight="700" text-anchor="middle" fill="#8f2133">Herz &rarr; Niere (&bdquo;kardiorenal&ldquo;)</text>
+    <g font-size="12" fill="#6b1d2a" text-anchor="middle">
+      <text x="380" y="62">Herzzeitvolumen &darr; &rarr; Nierenperfusion &darr;</text>
+      <text x="380" y="78">venöse Stauung (zentraler Venendruck &uarr;)</text>
+      <text x="380" y="94">RAAS- &amp; Sympathikus-Aktivierung</text>
+    </g>
+    <!-- Pfeil Niere -> Herz -->
+    <path d="M570 265 C460 325 300 325 190 265" fill="none" stroke="#2a6f97" stroke-width="4" marker-end="url(#arB)"/>
+    <text x="380" y="452" font-size="14" font-weight="700" text-anchor="middle" fill="#1d4e6b">Niere &rarr; Herz (&bdquo;renokardial&ldquo;)</text>
+    <g font-size="12" fill="#163a50" text-anchor="middle">
+      <text x="380" y="350">Na+/Wasser-Retention &rarr; Volumen- &amp; Druckbelastung</text>
+      <text x="380" y="368">Hypertonie, linksventrikuläre Hypertrophie</text>
+      <text x="380" y="386">Anämie, CKD-MBD &rarr; Verkalkung, Fibrose</text>
+      <text x="380" y="404">Urämietoxine, Inflammation, Hyperkaliämie</text>
+    </g>
+    <!-- gemeinsame Risikofaktoren -->
+    <rect x="270" y="165" width="220" height="120" rx="16" fill="#fff8ea" stroke="#e9a23b" stroke-width="2.5"/>
+    <text x="380" y="190" font-size="13" font-weight="700" text-anchor="middle" fill="#7a5200">Gemeinsame Treiber</text>
+    <g font-size="12" fill="#5a4000" text-anchor="middle">
+      <text x="380" y="210">Diabetes &middot; Hypertonie</text>
+      <text x="380" y="227">Adipositas &middot; Rauchen</text>
+      <text x="380" y="244">Dyslipidämie &middot; Alter</text>
+      <text x="380" y="261">Atherosklerose, Inflammation</text>
+    </g>
+    <path d="M270 225 L192 225" stroke="#e9a23b" stroke-width="3" marker-end="url(#arR)"/>
+    <path d="M490 225 L568 225" stroke="#e9a23b" stroke-width="3" marker-end="url(#arB)"/>
+  </svg>
+  <figcaption>Vereinfachtes Schema der bidirektionalen Herz-Nieren-Interaktion. Eigene Illustration auf Basis von ESC/ERA 2026 (S.&nbsp;34, 40, 42, 67) und ESC HF 2026 (S.&nbsp;66).</figcaption>
+  </figure>
+
+  <h3>Herz &rarr; Niere: Was bei Herzerkrankungen passiert</h3>
+  <ul>
+    <li><b>Hämodynamik:</b> Bei Herzinsuffizienz verändert sich die renale Hämodynamik; die Leitlinie nennt zudem gemeinsame Risikofaktoren als Verbindung <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=34">[ESC/ERA, S.&nbsp;34]</a>.</li>
+    <li><b>Stauung:</b> Bei dekompensierter HF ist Kongestion mit Albuminurie und Diuretikaresistenz verbunden; unvollständige Entstauung geht mit schlechter Prognose einher <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=40">[S.&nbsp;40, 42]</a>.</li>
+    <li><b>Worsening Renal Function (WRF):</b> Kleine, vorübergehende Kreatininanstiege unter Diuretika sind <i>nicht</i> mit schlechtem Outcome assoziiert, wenn die Entstauung gelingt (&bdquo;small and transient rises in serum creatinine during diuretic therapy are not associated with poor outcome if decongestion is achieved&ldquo;). Ungünstig ist die Kombination aus WRF und <i>schlechtem</i> Diuretikaansprechen <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=48">[HF 2026, S.&nbsp;48, 66]</a>.</li>
+    <li><b>Therapiefolge:</b> Ein beginnendes kardiorenales Syndrom mit Unverträglichkeit neurohormonaler Medikamente gilt als Hochrisikokriterium für fortgeschrittene HF <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=53">[HF 2026, S.&nbsp;53]</a>.</li>
+  </ul>
+
+  <h3>Niere &rarr; Herz: Was bei Nierenerkrankungen passiert</h3>
+  <ul>
+    <li><b>Salz-/Wasserretention und neurohormonelle Dysregulation</b> belasten das Herz <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=34">[S.&nbsp;34]</a>.</li>
+    <li><b>Dialyse:</b> Volumen- und Drucküberlastung &rarr; linksventrikuläre Hypertrophie und Dilatation, Gefäßverkalkung, myokardiale Fibrose; Beiträge von Anämie, CKD-MBD, Darmdysbiose/toxischen Metaboliten und AV-Fisteln <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=67">[S.&nbsp;67]</a>.</li>
+    <li><b>Elektrolyte &amp; Arrhythmien:</b> Rasche Verschiebungen von Flüssigkeit und Kalium erhöhen bei schwerer CKD/Dialyse das Risiko des plötzlichen Herztods <a href="https://myaidrive.com/wZd2EQa63a6YdnjZWEtAo2NrHdsBjwdj?pdfPage=12">[Patientenversion, S.&nbsp;12]</a>.</li>
+    <li><b>Atherosklerose:</b> Niedrige eGFR und/oder Albuminurie sind unabhängig mit Herzinfarkt, Schlaganfall, Herzinsuffizienz, Vorhofflimmern, pAVK und kardiovaskulärem Tod assoziiert &ndash; das Risiko steigt mit niedrigerer eGFR und höherer Albuminurie <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=19">[S.&nbsp;19]</a>.</li>
+  </ul>
+
+  <h3>Klassifikation: fünf Typen des kardiorenalen Syndroms (CRS)</h3>
+  <table>
+    <thead><tr><th style="width:12%">Typ</th><th style="width:30%">Bezeichnung</th><th>Beispiel</th></tr></thead>
+    <tbody>
+      <tr><td>Typ&nbsp;1</td><td>Akutes kardiorenales Syndrom</td><td>Akute Herzinsuffizienz / kardiogener Schock &rarr; AKI</td></tr>
+      <tr><td>Typ&nbsp;2</td><td>Chronisches kardiorenales Syndrom</td><td>Chronische Herzinsuffizienz &rarr; fortschreitende CKD</td></tr>
+      <tr><td>Typ&nbsp;3</td><td>Akutes renokardiales Syndrom</td><td>AKI &rarr; Lungenödem, Arrhythmie, akute Herzschädigung</td></tr>
+      <tr><td>Typ&nbsp;4</td><td>Chronisches renokardiales Syndrom</td><td>CKD &rarr; LV-Hypertrophie, Herzinsuffizienz, KHK</td></tr>
+      <tr><td>Typ&nbsp;5</td><td>Sekundäres CRS</td><td>Systemerkrankung (Sepsis, Diabetes, Amyloidose, Lupus) schädigt beide Organe</td></tr>
+    </tbody>
+  </table>
+  <p class="src">Klassifikation nach Ronco et&nbsp;al. (2008), Lehrbuchwissen. Die ESC/ERA-Leitlinie 2026 führt in den ausgewerteten Seiten ausdrücklich <b>keine</b> nummerierte Typologie aus, sondern beschreibt die Bidirektionalität allgemein <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=34">[S.&nbsp;34]</a>.</p>
+
+  <div class="callout red"><strong>Kernbotschaft der Leitlinie</strong>Menschen mit CKD müssen Verzögerungen bei der Herz-Kreislauf-Behandlung vermeiden: <i>&bdquo;Patients with CKD must avoid delays in receiving treatment for CVD.&ldquo;</i> <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=11">[S.&nbsp;11]</a> Die Leitlinie fasst ihre Botschaften als <b>STAMP on CKD</b> zusammen: <b>S</b>creen &middot; <b>T</b>riage and stage &middot; <b>A</b>ddress CKD risk &middot; <b>M</b>odify CVD management &middot; <b>P</b>lan health services <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=75">[S.&nbsp;75]</a>.</div>
+</section>
+
+<!-- ================= THERAPIE ================= -->
+<section id="therapie">
+  <h2>8 &middot; Therapie an der Herz-Nieren-Achse (ESC/ERA 2026)</h2>
+  <p class="lead">Wichtige Empfehlungen mit Empfehlungsklasse/Evidenzgrad (<span class="cls">Klasse, Evidenz</span>) und Seitenangabe in der Leitlinie.</p>
+
+  <table>
+    <thead><tr><th style="width:15%">Substanz / Maßnahme</th><th>Empfehlung (Kurzfassung)</th><th style="width:14%">Klasse</th><th style="width:12%">Quelle</th></tr></thead>
+    <tbody>
+      <tr><td><b>ACE-Hemmer / ARB</b></td><td>Maximal tolerierte Dosis bei CKD zur Senkung von Blutdruck, CKD-Progression und CVD-Risiko (mögliche Ausnahme: keine Albuminurie, niedriger Blutdruck, keine HF). <b>Kombination ACEi + ARB nicht empfohlen</b> (AKI, Hyperkaliämie).</td><td><span class="cls">I, A</span> / <span class="cls">III, A</span></td><td><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=28">S.&nbsp;28, 31</a></td></tr>
+      <tr class="hl"><td><b>SGLT2-Hemmer</b></td><td>CKD + Typ-2-Diabetes: ab eGFR&nbsp;&ge;20, unabhängig von der Glykämie. Ohne Diabetes: eGFR&nbsp;&ge;20 und UACR&nbsp;&ge;200&nbsp;mg/g (&ge;20&nbsp;mg/mmol). Bei eGFR&nbsp;20&ndash;44 und niedrigerer UACR erwägen. Nach Beginn Weiterführung bis zum Nierenersatz möglich. Herzinsuffizienz: unabhängig von der LVEF.</td><td><span class="cls">I, A</span> &middot; <span class="cls">IIa, B1</span></td><td><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=29">ESC/ERA S.&nbsp;29, 31, 35, 75</a>; <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=32">HF S.&nbsp;32</a></td></tr>
+      <tr class="hl"><td><b>Finerenon</b></td><td>CKD + Typ-2-Diabetes, eGFR&nbsp;&ge;25 und UACR&nbsp;&ge;30&nbsp;mg/g; Beginn bei Serum-K<sup>+</sup>&nbsp;&le;5,0&nbsp;mmol/L (Studien schlossen bei &gt;4,8 aus). Senkt auch das HF-Risiko bei T2D und CKD.</td><td><span class="cls">I, A</span></td><td><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=29">ESC/ERA S.&nbsp;29&ndash;30</a>; <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=36">HF S.&nbsp;36&ndash;37</a></td></tr>
+      <tr><td><b>Steroidale MRA</b></td><td>HFrEF und eGFR&nbsp;&ge;30 <span class="cls">I, A</span>; bei HF mit LVEF&nbsp;&ge;40&nbsp;% und eGFR&nbsp;&ge;25 erwägen <span class="cls">IIa, B1</span>; <b>Dialyse: nicht routinemäßig</b> <span class="cls">III, A</span>. (HF-Leitlinie: MRA bei eGFR&nbsp;&lt;25 nicht getestet; Vorsicht bei K<sup>+</sup>&nbsp;&ge;5,0.)</td><td><span class="cls">I, A</span> &middot; <span class="cls">IIa, B1</span> &middot; <span class="cls">III, A</span></td><td><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=39">ESC/ERA S.&nbsp;39, 69</a>; <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=32">HF S.&nbsp;32</a></td></tr>
+      <tr><td><b>GLP-1-RA (Semaglutid)</b></td><td>CKD + T2D, wenn eGFR&nbsp;25&ndash;49 und UACR&nbsp;&ge;100&nbsp;mg/g oder eGFR&nbsp;50&ndash;74 und UACR&nbsp;&ge;300&nbsp;mg/g.</td><td><span class="cls">I, A</span></td><td><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=30">S.&nbsp;30&ndash;31</a></td></tr>
+      <tr><td><b>Blutdruck</b></td><td>Bei eGFR&nbsp;&ge;30 und bestätigtem Praxis-RR&nbsp;&ge;130/80: Lebensstil + Medikamente; <b>Ziel systolisch 120&ndash;129&nbsp;mmHg</b>, sofern verträglich. Bei eGFR&nbsp;&lt;30 individualisieren. (ESC-Hypertonie-Leitlinie 2024: gleiches Ziel bei eGFR&nbsp;&gt;30.)</td><td><span class="cls">I, A</span> / <span class="cls">I, C</span></td><td><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=25">ESC/ERA S.&nbsp;25&ndash;26</a>; <a href="https://myaidrive.com/MT99LANkE5FPSh5xGxe45LLErCx6CMqB?pdfPage=65">BP S.&nbsp;65</a></td></tr>
+      <tr><td><b>Lipide</b></td><td>Bei eGFR&nbsp;&lt;60 ohne Nierenersatz: intensive Statin-Therapie ± Ezetimib, unabhängig vom Lipidwert. Dialyse: Fortführen oder bei ASCVD erwägen.</td><td><span class="cls">I, A</span> &middot; <span class="cls">IIb, C</span></td><td><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=26">S.&nbsp;26&ndash;27</a></td></tr>
+      <tr><td><b>Diuretika bei HF</b></td><td>Schleifendiuretika bei Volumenüberlast <span class="cls">I, A</span>. Initial i.&thinsp;v. (Diuretika-naiv): 160&nbsp;mg Furosemid-Äquivalent bei eGFR&nbsp;&lt;30, 120&nbsp;mg bei 30&ndash;44, 80&nbsp;mg bei &ge;45. Acetazolamid zusätzlich bei eGFR&nbsp;&ge;20 erwägen <span class="cls">IIa, B1</span>.</td><td><span class="cls">I, A</span> &middot; <span class="cls">IIa</span></td><td><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=41">ESC/ERA S.&nbsp;36&ndash;42</a>; <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=48">HF S.&nbsp;48&ndash;49</a></td></tr>
+      <tr><td><b>Vorhofflimmern</b></td><td>eGFR&nbsp;&ge;30: DOAK statt VKA <span class="cls">I, A</span>; eGFR&nbsp;15&ndash;29: oraler Faktor-Xa-Hemmer erwägen <span class="cls">IIa, B1</span>; eGFR&nbsp;&lt;15/Dialyse: individuelle Entscheidung (z.&thinsp;B. Apixaban 2,5&nbsp;mg 2&times;/Tag erwägen <span class="cls">IIb, C</span>).</td><td><span class="cls">I, A</span> &middot; <span class="cls">IIa, B1</span></td><td><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=59">S.&nbsp;59&ndash;60</a></td></tr>
+      <tr><td><b>Kontrastmittel / PCI</b></td><td>Notwendige Untersuchungen nicht verzögern <span class="cls">I, C</span>; bei eGFR&nbsp;&lt;30 niedrig-/iso-osmolares Kontrastmittel + kontrastsparende Strategie <span class="cls">I, A</span>; prophylaktische Hämodialyse nicht empfohlen <span class="cls">III, B2</span>.</td><td><span class="cls">I, A</span> &middot; <span class="cls">III, B2</span></td><td><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=66">S.&nbsp;66&ndash;67</a></td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid">
+    <div class="card"><h3>Was ist beim Therapiestart zu kontrollieren?</h3>
+      <ul>
+        <li>Nach Beginn von ACEi/ARB und MRA: <b>eGFR und Kalium nach 1&ndash;4&nbsp;Wochen</b>. Ein eGFR-Abfall &lt;30&nbsp;% wird typischerweise toleriert; ab &ge;30&nbsp;% Begleitmedikation, Volumenmangel, Nierenarterienstenose und AKI prüfen <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=31">[ESC/ERA, S.&nbsp;31, 33]</a>.</li>
+        <li>Bei HF: Kreatininanstieg &lt;50&nbsp;% über dem Ausgangswert gilt als akzeptabel, solange eGFR&nbsp;&gt;15 bleibt <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=66">[HF 2026, S.&nbsp;66]</a>. Bei dekompensierter HF wird die Entstauung trotz Kreatininanstieg bis 50&nbsp;% fortgesetzt, wenn das Diuretikaansprechen gut ist <span class="cls">I, C</span> <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=44">[S.&nbsp;44]</a>.</li>
+        <li>SGLT2i und GLP-1-RA erfordern keine routinemäßig häufigere Kreatininmessung.</li>
+      </ul></div>
+    <div class="card"><h3>Hyperkaliämie-Management</h3>
+      <ul>
+        <li>Handlungsschwelle: wiederholt K<sup>+</sup>&nbsp;&gt;5,5&nbsp;mmol/L.</li>
+        <li>Begleitmedikamente prüfen, Azidose korrigieren, Glykämie optimieren, Diuretika und kaliumarme Ernährung erwägen; bei refraktärem Verlauf <b>Patiromer</b> oder <b>Natrium-Zirkonium-Cyclosilikat</b> <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=19">[S.&nbsp;19]</a>.</li>
+        <li>ACEi/ARB/Finerenon bei K<sup>+</sup>&nbsp;&ge;6,0 pausieren; bei 5,5&ndash;6,0 Faktoren optimieren und ggf. Dosis reduzieren <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=33">[Abb.&nbsp;8, S.&nbsp;33]</a>.</li>
+        <li>Die HF-Leitlinie gibt keine spezifische Empfehlung für Kaliumbinder (klinischer Nutzen unklar) <a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD?pdfPage=33">[HF, S.&nbsp;33]</a>.</li>
+      </ul></div>
+    <div class="card"><h3>Nephrotoxika &amp; Dosierung</h3>
+      <ul>
+        <li>Renal eliminierte Medikamente nach GFR dosieren <span class="cls">I, C</span>; <b>NSAR</b> sind ein genanntes Beispiel für Nephrotoxika, deren vorübergehendes Absetzen vor Eingriffen erwogen werden kann <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=17">[S.&nbsp;17, 65]</a>.</li>
+        <li>Metformin: ab eGFR&nbsp;&lt;45 Dosisreduktion, unter eGFR&nbsp;30 im Allgemeinen beenden <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=34">[S.&nbsp;34]</a>. Ranolazin bei eGFR&nbsp;&lt;30 meiden; Digoxin Dosisreduktion/Spiegelkontrolle <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=49">[S.&nbsp;49, 62]</a>.</li>
+        <li>Die Leitlinie ist ausdrücklich <b>kein Nachschlagewerk für konkrete CKD-Dosen</b> &ndash; Fachinformation beachten.</li>
+      </ul></div>
+  </div>
+
+  <h3>Weitere Studien aus Ihrem Ordner &laquo;Kidney Disease&raquo;</h3>
+  <div class="callout">
+    <p style="margin-top:0">Die folgenden Punkte stammen aus den Kurzbeschreibungen der Dokumente (nicht aus vollständiger Volltextprüfung):</p>
+    <ul>
+      <li><b>ACHIEVE:</b> Spironolacton bei Dialysepatienten senkte kardiovaskulären Tod bzw. HF-Hospitalisierungen nicht signifikant und erhöhte das Risiko schwerer Hyperkaliämie &ndash; <a href="https://myaidrive.com/u37xQAzsYEFUvMm4Twr66W">Commentary, Pedicino &amp; Patrono</a>. Passend zur Leitlinie: MRA bei Dialyse nicht routinemäßig <span class="cls">III, A</span>.</li>
+      <li><b>PISCES:</b> 4&nbsp;g Fischöl täglich senkte schwere kardiovaskuläre Ereignisse bei 1228 Hämodialysepatienten (HR&nbsp;0,57; &ndash;43&nbsp;%) &ndash; <a href="https://myaidrive.com/9RJQy7CGQEcXty8enRmWQK">NEJM</a>.</li>
+      <li><b>FAIR:</b> FFR-gesteuerte Auswahl für Nierenarterien-Stenting reduzierte unnötige Stents um 54&nbsp;% &ndash; Blutdruck-Nutzen nur bei funktionell signifikanter Stenose (FFR&nbsp;&lt;0,80) &ndash; <a href="https://myaidrive.com/TUKzMHwacPN3xGjkFdtDCS">Editorial, White</a>.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= PRAXIS ================= -->
+<section id="praxis">
+  <h2>9 &middot; Praxis: Was jede und jeder selbst tun kann</h2>
+  <div class="grid">
+    <div class="card"><h3>Lebensstil (ESC/ERA 2026)</h3>
+      <ul>
+        <li><b>Rauchstopp</b> mit Unterstützung <span class="cls">I, B1</span></li>
+        <li><b>Salz:</b> Natrium &lt;2&nbsp;g/Tag (&lt;5&nbsp;g Kochsalz), viel Gemüse; stark verarbeitete Lebensmittel meiden <span class="cls">I, B1</span></li>
+        <li><b>Gewicht:</b> bei Übergewicht Reduktion, Ziel-BMI 18,5&ndash;25 <span class="cls">I, B2</span></li>
+        <li><b>Bewegung:</b> möglichst &ge;150&nbsp;min/Woche moderat plus muskelkräftigende Einheiten <span class="cls">I, B2</span></li>
+        <li>Eine einheitliche &laquo;Nierendiät&raquo; gibt es nicht; kaliumhaltige Salzersatzmittel können bei CKD unsicher sein.</li>
+      </ul>
+      <p class="src"><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=24">ESC/ERA, S.&nbsp;24</a>; <a href="https://myaidrive.com/wZd2EQa63a6YdnjZWEtAo2NrHdsBjwdj?pdfPage=7">Patientenversion, S.&nbsp;7</a></p></div>
+    <div class="card"><h3>Blutdruck zu Hause messen</h3>
+      <p>Validiertes Gerät, ruhig sitzen, zwei Messungen je Anlass, morgens und abends über mindestens 3, idealerweise 7 Tage <a href="https://myaidrive.com/wZd2EQa63a6YdnjZWEtAo2NrHdsBjwdj?pdfPage=8">[Patientenversion, S.&nbsp;8]</a>. Außerklinische Messungen helfen, Masken-/Weißkitteleffekte und nächtliche Hypertonie zu erkennen <span class="cls">I, C</span> <a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF?pdfPage=25">[ESC/ERA, S.&nbsp;25]</a>.</p></div>
+    <div class="card"><h3>Fragen an das Behandlungsteam</h3>
+      <ul>
+        <li>Wie sind meine <b>eGFR</b> und <b>UACR</b>, und in welchem Feld der Risikomatrix liege ich?</li>
+        <li>Komme ich für <b>SGLT2-Hemmer</b>, ACEi/ARB, Finerenon oder Semaglutid in Frage?</li>
+        <li>Welche meiner Medikamente sind bei sinkender Nierenfunktion anzupassen (NSAR!)?</li>
+        <li>Wann sollte ich zum Nephrologen / zur Kardiologin überwiesen werden?</li>
+      </ul>
+      <p class="src">Personenzentrierte Versorgung: Multidisziplinäres Team, gemeinsame Entscheidungsfindung <a href="https://myaidrive.com/wZd2EQa63a6YdnjZWEtAo2NrHdsBjwdj?pdfPage=13">[Patientenversion, S.&nbsp;13]</a>.</p></div>
+  </div>
+</section>
+
+<!-- ================= QUELLEN ================= -->
+<section id="quellen">
+  <h2>10 &middot; Quellen &amp; Hinweise</h2>
+  <ul class="refs">
+    <li><a href="https://myaidrive.com/KGAvPXjQ7TUELwqGDk8EAzAk9hNCDomF">2026 ESC Guidelines for the management of cardiovascular disease and chronic kidney disease, in collaboration with the European Renal Association (ERA)</a> &ndash; Damman, Herrington et&nbsp;al. (Ordner <i>Cardio ESC Guidelines</i>)</li>
+    <li><a href="https://myaidrive.com/wZd2EQa63a6YdnjZWEtAo2NrHdsBjwdj">ESC Patientenversion: Cardiovascular Disease and Chronic Kidney Disease &ndash; What Patients Need to Know</a></li>
+    <li><a href="https://myaidrive.com/mTFKCEJttQy5yEozJkoV7uXXBwnJgZZD">2026 ESC Guidelines for the management of heart failure</a> (Køber et&nbsp;al.)</li>
+    <li><a href="https://myaidrive.com/MT99LANkE5FPSh5xGxe45LLErCx6CMqB">2024 ESC Guidelines for the management of elevated blood pressure and hypertension</a> (McEvoy et&nbsp;al.)</li>
+    <li>Ergänzend: <a href="https://myaidrive.com/u37xQAzsYEFUvMm4Twr66W">ACHIEVE-Commentary</a>, <a href="https://myaidrive.com/9RJQy7CGQEcXty8enRmWQK">PISCES (NEJM)</a>, <a href="https://myaidrive.com/TUKzMHwacPN3xGjkFdtDCS">FAIR-Editorial</a>.</li>
+  </ul>
+  <div class="callout blue"><strong>Grenzen dieser Zusammenstellung</strong>
+    <ul style="margin:4px 0">
+      <li>Die Leitlinien wurden mit KI-Unterstützung seitenweise ausgewertet; Seitenzahlen beziehen sich auf die PDF-Seiten. Empfehlungen bitte vor klinischer Anwendung im Original prüfen.</li>
+      <li>Die ESC-Diabetes-Leitlinie 2023 (<i>2023_ESC_GL_CVD_Diab.pdf</i>) konnte technisch nicht ausgewertet werden; Aussagen zu Diabetes und Niere stützen sich auf die ESC/ERA-CKD-Leitlinie 2026 und die Hypertonie-Leitlinie 2024.</li>
+      <li>Physiologie (Nephron, Regulation), Pathologie-Übersicht (AKI-Definition, Glomerulopathien, ADPKD, Steine, Tumoren) und die Ronco-Klassifikation des kardiorenalen Syndroms sind allgemeines Lehrbuchwissen und nicht aus den ESC-Dokumenten belegt.</li>
+      <li>Diese Seite dient der Bildung und ersetzt keine ärztliche Beratung, Diagnose oder Behandlung.</li>
+    </ul>
+  </div>
+</section>
+
+</div></main>
+
+<footer><div class="wrap">Die menschliche Niere &amp; die Herz-Nieren-Achse &middot; Lernseite erstellt mit AI Drive &middot; Grundlage: ESC/ERA-Leitlinien 2026 u.&thinsp;a.</div></footer>
+
+<script>
+(function(){
+  // Nephron-Schema <-> Tabelle verknüpfen
+  var segs=document.querySelectorAll('.nephron-seg');
+  var rows=document.querySelectorAll('#segtable tr.seg-row');
+  function select(id){
+    segs.forEach(function(s){s.classList.toggle('on',s.getAttribute('data-seg')===id)});
+    rows.forEach(function(r){var on=r.getAttribute('data-seg')===id;r.classList.toggle('on',on); if(on){r.scrollIntoView({behavior:'smooth',block:'nearest'});}});
+  }
+  segs.forEach(function(s){s.addEventListener('click',function(){select(s.getAttribute('data-seg'))})});
+  rows.forEach(function(r){r.style.cursor='pointer';r.addEventListener('click',function(){select(r.getAttribute('data-seg'))})});
+  // Navigation hervorheben
+  var links=document.querySelectorAll('nav.toc a');
+  var secs=Array.prototype.map.call(links,function(a){return document.querySelector(a.getAttribute('href'))});
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY+90,cur=0;
+    secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});
+    links.forEach(function(a,i){a.classList.toggle('active',i===cur)});
+  });
+})();
+</script>
+</body>
+</html>
